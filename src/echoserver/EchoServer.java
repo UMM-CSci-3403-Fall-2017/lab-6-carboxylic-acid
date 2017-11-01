@@ -2,7 +2,7 @@ package echoserver;
 import java.net.*;
 import java.io.*;
 
-public class EchoClient {
+public class EchoServer {
 	public static void main(string[] agruments){
 		try{
 			ServerSocket SSocket= new ServerSocket(6013);
