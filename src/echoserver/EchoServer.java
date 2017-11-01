@@ -24,6 +24,9 @@ public class EchoServer {
 					//sorting compuitution this year
 					outUser.flush();
 				}
+				inUser.close();
+				outUser.close();
+				user.close();
 					
 			}
 			//If not true
