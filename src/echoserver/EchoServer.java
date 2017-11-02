@@ -2,37 +2,32 @@ package echoserver;
 import java.net.*;
 import java.io.*;
 
-public class EchoServer {
-	public static void main(string[] agruments){
+public class EchoServer{
+	public static void main(String[] args){
 		try{
 			ServerSocket SSocket= new ServerSocket(6013);
 			while(true){
 				int alive;
+				byte[] readBuff = new byte[1];
 				//Need socket from user
 				Socket user = SSocket.accept();
 				
 				//Need more handshaking
-				InputStream inUser = user.getInputStream();
-				OutputStream outUser = user.getOutputStream();
+				InputStream inuser = user.getInputStream();
+				OutputStream outuser = user.getOutputStream();
 				
-				//keeping the info alive from the User
-				while((alive = inUser.read())!=-1){
-					inClient.write(alive);
-					//Useing flush to write out any data that remains in the 
-					//stream
-					//, happens to be a common comand for the wiiner of the 
-					//sorting compuitution this year
-					outUser.flush();
-				}
-				inUser.close();
-				outUser.close();
-				user.close();
-					
-			}
-			//If not true
-			catch(IOException NoGo){
-				System.err.println(NOGo);
+				//keeping the info alive from the User and reads into the stream.
+				while(inuser.read(readBuff)!=-1){
+					outuser.write(readBuff);
+					outuser.flush();
+					}
+					//Closeing the Socket
+					user.close();
 			}
 		}
+		//If not true
+		catch(IOException NoGo){
+			System.err.println(NoGo);
+			}
 	}
 }
